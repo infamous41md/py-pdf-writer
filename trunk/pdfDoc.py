@@ -3,7 +3,7 @@
 # a crappy PDF parser/writer
 #
 # CREDIT: some of the filter code is from Didier Stevens
-#   http://blog.didierstevens.com/programs/pdf-tools/
+# http://blog.didierstevens.com/programs/pdf-tools/
 #
 # TODO:
 #       -fix all of the unget() crap

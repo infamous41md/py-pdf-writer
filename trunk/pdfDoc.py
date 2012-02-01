@@ -771,6 +771,18 @@ class pdfDoc:
         self.data = f.read()
         f.close()
 
+    #for now this just handles streams
+    def extractObjects(self, objList):
+        for o in self.objs:
+            if o.num in objList:
+                if o.isStream():
+                    f = open("pdf-obj-%d.bin" % (o.num), "wb")
+                    f.write(o.sData)
+                    f.close()
+                    print "Wrote out object %d" % (o.num)
+                else:
+                    print "Trying to unpack an object (%d) that isn't a stream" % (o.num)
+
     #
     def unpackStreams(self, unpackObjs):
         for o in self.objs:
@@ -1134,6 +1146,8 @@ if __name__ == "__main__":
                 help='Unpack objects streams (filter/predictor) and rewrite them to new file unpacked')
     parser.add_argument('-l', '--unpackObjects', type=int, action='append',
                 help='List of objects to unpack')
+    parser.add_argument('-x', '--extractObjects', type=int, action='append',
+                help='List of objects to extract')
     args = parser.parse_args()
 
     if args.verbose:
@@ -1150,6 +1164,8 @@ if __name__ == "__main__":
         else:
             pDoc.unpackStreams(args.unpackObjects)
             pDoc.emitPDF(args.outfile)
+    elif args.extractObjects:
+        pDoc.extractObjects(args.extractObjects)
     else:
         print "*********************************"
         pDoc.display(args.dumpStreams, args.unfilter)

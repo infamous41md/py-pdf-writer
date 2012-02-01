@@ -1121,7 +1121,7 @@ PREDICTORS = { 1:pNone, 2:pTIFF, 10:pNone, 11:pSUB, 12:pUP, 13:pAV, 14:pPaeth, 1
 if __name__ == "__main__":
 
     #
-    parser = argparse.ArgumentParser(description="An ICC profile dumper")
+    parser = argparse.ArgumentParser(description="Simple PDF dumper/writer")
     parser.add_argument('inFile', help='The input file')
     parser.add_argument('-v', '--verbose', action='store_true', help='Debug output')
     parser.add_argument('-d', '--dumpStreams', action='store_true',

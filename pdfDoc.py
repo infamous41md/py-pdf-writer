@@ -1165,6 +1165,9 @@ if __name__ == "__main__":
             pDoc.unpackStreams(args.unpackObjects)
             pDoc.emitPDF(args.outfile)
     elif args.extractObjects:
+        if args.unfilter:
+            pDoc.unpackStreams(args.extractObjects)
+
         pDoc.extractObjects(args.extractObjects)
     else:
         print "*********************************"
